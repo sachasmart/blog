@@ -1,0 +1,17 @@
+services:
+  lambda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # volumes:
+    # - ./lambda.py:/var/task/lambda.py
+    command: "lambda.handler"
+    ports:
+      - "3002:8080"
+    networks:
+      - local_lambda_network
+
+networks:
+  local_lambda_network:
+    name: local_lambda_network
+    driver: bridge
